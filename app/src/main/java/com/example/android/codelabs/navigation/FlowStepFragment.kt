@@ -22,6 +22,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.navArgs
 
 /**
  * Presents how multiple steps flow could be implemented.
@@ -35,14 +36,13 @@ class FlowStepFragment : Fragment() {
     ): View? {
         setHasOptionsMenu(true)
 
-        val flowStepNumber = arguments?.getInt("flowStepNumber")
 
-        // TODO STEP 8 - Use type-safe arguments - remove previous line!
-//        val safeArgs: FlowStepFragmentArgs by navArgs()
-//        val flowStepNumber = safeArgs.flowStepNumber
-        // TODO END STEP 8
+      //  arguments?.getString("aaaa") böylede alabilriz ama aldığımız şeyin strign olup olmadığını runtime a kadar bilemiyoruz type değil bir yöntem değil
+        val safeArgs: FlowStepFragmentArgs by navArgs() // arka planda bu clası oluşturuyor xml'dede bellli bu yüzden type safety canlıya çıkmadan bilebiliyoruz
+        // argümenti bundle koyuo classta generateed source navigarion arg içinde bulunabiliyor
 
-        return when (flowStepNumber) {
+
+        return when (safeArgs.flowStepNumber) {
             2 -> inflater.inflate(R.layout.flow_step_two_fragment, container, false)
             else -> inflater.inflate(R.layout.flow_step_one_fragment, container, false)
         }

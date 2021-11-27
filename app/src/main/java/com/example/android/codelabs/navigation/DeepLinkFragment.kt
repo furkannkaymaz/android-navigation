@@ -31,9 +31,7 @@ import androidx.core.app.NotificationCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 
-/**
- * Fragment used to show how to deep link to a destination
- */
+
 class DeepLinkFragment : Fragment() {
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -60,6 +58,8 @@ class DeepLinkFragment : Fragment() {
                     .setArguments(args)
                     .createPendingIntent()
 
+            // burası yaratma
+
             val notificationManager =
                     context?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -67,12 +67,14 @@ class DeepLinkFragment : Fragment() {
                         "deeplink", "Deep Links", NotificationManager.IMPORTANCE_HIGH))
             }
 
+            // burası notification çıkarma
+
             val builder = NotificationCompat.Builder(
-                    context!!, "deeplink")
+                    requireContext(), "deeplink")
                     .setContentTitle("Navigation")
                     .setContentText("Deep link to Android")
                     .setSmallIcon(R.drawable.ic_android)
-                    .setContentIntent(deeplink)
+                    .setContentIntent(deeplink) // tek farklı olan yer normal deeplinkten bunuda yukarıda tanımlıyoruz
                     .setAutoCancel(true)
             notificationManager.notify(0, builder.build())
         }

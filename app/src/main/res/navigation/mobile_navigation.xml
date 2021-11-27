@@ -62,6 +62,9 @@
             android:id="@+id/next_action"
             app:popUpTo="@id/home_dest">
         </action>
+        <action
+            android:id="@+id/action_flow_step_two_dest_to_deeplink_dest"
+            app:destination="@id/deeplink_dest" />
     </fragment>
 
     <!-- TODO STEP 4 Create a new navigation destination pointing to SettingsFragment -->
@@ -81,10 +84,7 @@
         <argument
             android:name="myarg"
             android:defaultValue="Android!"/>
-        <!-- TODO STEP 11.1 - Add a deep link to www.example.com/{myarg}/ -->
+       <deepLink app:uri="www.example.com/{myarg}" />
 
-        <!--<deepLink app:uri="www.example.com/{myarg}" />-->
-
-        <!-- TODO END STEP 11.1 -->
     </fragment>
 </navigation>
